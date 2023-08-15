@@ -1,32 +1,36 @@
 import { mergeSort } from "./mergeSort";
 
-export class Tree {
+class Tree {
     constructor(array) {
         this.array = array;
         this.root = null;
+        this.leftChildren = null;
+        this.rightChildren = null;
     }
-    buildTree() {
-        let sortedArray = mergeSort(this.array)
+}
+    function buildTree() {
+        let sortedArray = mergeSort(array)
         let removedDuplicates = [... new Set(sortedArray)]
 
-        this.recursiveBuildTree(sortedArray)
-
-
-
+        recursiveBuildTree(removedDuplicates)
     }
 
-    recursiveBuildTree(array) {
-        // if (array.length === 0) return array;
+    function recursiveBuildTree(array) {
+        if (array.length === 0) return array;
         // else {
-            const middleIndex = Math.ceil(0 + array.length)/2
-            const root = array[middleIndex]
+            const tree = newTree(array)
+            const middleIndex = Math.floor(array.length/2)
+            tree.root = array[middleIndex]
+            
             const leftHalf = array.slice(0, middleIndex)
             const rightHalf = array.slice(middleIndex + 1) // don't include the root (middle)
 
             console.log(root)
+            recursiveBuildTree(leftHalf)
             console.log(leftHalf)
+            recursiveBuildTree(rightHalf)
             console.log(rightHalf)
-            // return this.recursiveBuildTree()
+            return root;
+            // not exactly sure what is happening here
         // }
     }
-}
