@@ -1,11 +1,18 @@
 import { mergeSort } from "./mergeSort";
 
+import { prettyPrint } from "./prettyPrint";
+
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
 class Tree {
     constructor(array) {
         this.array = array;
         this.root = null;
-        this.leftChildren = null;
-        this.rightChildren = null;
     }
 }
 export function buildTree(array) {
@@ -17,17 +24,17 @@ export function buildTree(array) {
     }
 
 function recursiveBuildTree(array) {
-    if (array.length === 0) return array;
-    // else {
-        const tree = new Tree(array)
+    if (array.length === 0) {
+        return null; // what do i need to return? array? node?
+    } else {
         const middleIndex = Math.floor(array.length/2)
-        tree.root = array[middleIndex]
-            
-        tree.leftChildren = tree.array.slice(0, middleIndex)
-        tree.rightChildren = tree.array.slice(middleIndex + 1)
+        const root = new Node(array[middleIndex])
+        // console.log(array)
 
-        console.log(tree.root)
-        recursiveBuildTree(tree.leftChildren)
-        recursiveBuildTree(tree.rightChildren)
-        return tree.root;
+        root.left = recursiveBuildTree(array.slice(0, middleIndex))
+        root.right = recursiveBuildTree(array.slice(middleIndex + 1))
+        console.log(root)
+        return root;
+    }
+
 }
