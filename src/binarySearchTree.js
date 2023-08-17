@@ -4,24 +4,22 @@ import { prettyPrint } from "./prettyPrint";
 
 class Node {
     constructor(value) {
-        this.value = value;
+        this.data= value;
         this.left = null;
         this.right = null;
     }
 }
-class Tree {
+export class Tree {
     constructor(array) {
-        this.array = array;
-        this.root = null;
+        this.root = buildTree(array);
     }
 }
-export function buildTree(array) {
+
+function buildTree(array) {
         let sortedArray = mergeSort(array)
         let removedDuplicates = [... new Set(sortedArray)]
-
-        console.log(removedDuplicates)
-        recursiveBuildTree(removedDuplicates)
-    }
+        return recursiveBuildTree(removedDuplicates)
+}
 
 function recursiveBuildTree(array) {
     if (array.length === 0) {
@@ -29,11 +27,10 @@ function recursiveBuildTree(array) {
     } else {
         const middleIndex = Math.floor(array.length/2)
         const root = new Node(array[middleIndex])
-        // console.log(array)
 
         root.left = recursiveBuildTree(array.slice(0, middleIndex))
         root.right = recursiveBuildTree(array.slice(middleIndex + 1))
-        console.log(root)
+        // console.log(root)
         return root;
     }
 
