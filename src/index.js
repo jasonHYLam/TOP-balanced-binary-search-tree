@@ -10,10 +10,8 @@ let newTree = new Tree(testArray)
 // prettyPrint(newTree.root)
 
 newTree.insert(9)
-prettyPrint(newTree.root)
+// prettyPrint(newTree.root)
 
-console.log('h')
-newTree.delete(23)
-prettyPrint(newTree.root)
-newTree.delete(3)
+// console.log('h')
+newTree.delete(677)
 prettyPrint(newTree.root)
