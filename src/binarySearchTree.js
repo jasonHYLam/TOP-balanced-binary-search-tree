@@ -55,19 +55,23 @@ export class Tree {
                 && node.left.left.right === null && node.left.right === null) {
                     node.left = node.left.left
             }
-            else if (node.left.data === value && node.left.right !== null && node.left.left.left === null 
-                && node.left.left.right === null && node.left.left === null) {
+            else if (node.left.data === value && node.left.right !== null && node.left.right.left === null 
+                && node.left.right.right === null && node.left.left === null) {
                     node.left = node.left.right
             }
             else if (node.right.data === value && node.right.left !== null && node.right.left.left === null 
                 && node.right.left.right === null && node.right.right === null) {
                     node.right = node.right.left
             }
-            else if (node.right.data === value && node.right.right !== null && node.right.left.left === null 
-                && node.right.left.right === null && node.right.left === null) {
+            else if (node.right.data === value && node.right.right !== null && node.right.right.left === null 
+                && node.right.right.right === null && node.right.left === null) {
                     node.right = node.right.right
             }
-            // deleting a branch with both leaves; get the next right, then the next left i think
+            // edge case where root is has one leaf (two nodes only in the tree)
+            // deleting a branch with both leaves; get the next right, then leftmost i think
+            else if (node.data === value && node.left !== null && node.right !== null) {
+                if 
+            }
             // value isn't there
             else if (value < node.data) {
                 return recursiveFunction(node.left, value)
