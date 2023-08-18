@@ -18,4 +18,6 @@ prettyPrint(newTree.root)
 newTree.find(6)
 newTree.find(1)
 
-newTree.levelOrderIterative((node) => console.log(node))
+// newTree.levelOrderIterative((node) => console.log(node))
+
+newTree.inOrder((node)=>console.log(node))
