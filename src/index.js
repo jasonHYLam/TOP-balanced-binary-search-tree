@@ -14,3 +14,6 @@ newTree.insert(9)
 
 newTree.delete(323)
 prettyPrint(newTree.root)
+
+newTree.find(6)
+newTree.find(1)
