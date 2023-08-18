@@ -13,5 +13,7 @@ newTree.insert(9)
 prettyPrint(newTree.root)
 
 console.log('h')
-newTree.delete(9)
+newTree.delete(23)
+prettyPrint(newTree.root)
+newTree.delete(3)
 prettyPrint(newTree.root)
