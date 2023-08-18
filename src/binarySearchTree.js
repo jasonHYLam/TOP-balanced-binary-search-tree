@@ -124,8 +124,43 @@ export class Tree {
         recursiveFunction(this.root, value)
     }
 
+    levelOrderRecursive(helperFunction) {
+        function recursiveFunction(node) {
+            // There needs to be some sort of queue, I think it needs to be inside the function
+            // base case: if the leaf branches are reached?
+            if (node.left === null || node.right === null) {
+                return;
+            }
+            else {
+                // create a chain, one that continuously adds and deletes nodes
+                let queue = [];
+                queue.push(node)
+                helperFunction(node)
+                queue.shift()
+                if (node.left) queue.push(node.left)
+                if (node.right) queue.push(node.right)
 
+                // also traverse down the chain
+                // go left? go right?
+                return recursiveFunction()
+                // do i need to have recurisveFunction return to the queue?
+            }
+            //recursive
+            // may have to set root, and get the children
+            // add the value to a queue, take it out, and then add the children to a queue?
+        }
+    }
 
+    levelOrderIterative(helperFunction) {
+        let queue = []
+        queue.push(this.root)
+        while (queue.length !== 0) {
+            helperFunction(queue[0])
+            if (queue[0].left) queue.push(queue[0].left)
+            if (queue[0].right) queue.push(queue[0].right)
+            queue.shift()
+        }
+    }
 }
 
 function buildTree(array) {
