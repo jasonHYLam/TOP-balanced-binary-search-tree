@@ -20,25 +20,43 @@ export class Tree {
             if (value < node.data && node.left == null) {
                 const newNode = new Node(value);
                 node.left = newNode;
-                console.log('a')
 
             } else if (value > node.data && node.right == null) {
                 const newNode = new Node(value);
                 node.right = newNode;
-                console.log('b')
 
             } else if (value < node.data) {
-                console.log('c')
                 return recursiveFunction(node.left, value)
 
             } else if (value > node.data) {
-                console.log('d')
                 return recursiveFunction(node.right, value)
 
             } else if (value == node.data) {
-                console.log('e')
                 console.log("value already in tree, try another value")
                 return
+            }
+        }
+        recursiveFunction(this.root, value)
+    }
+
+    delete(value) {
+        function recursiveFunction(node, value) {
+            console.log(node.left)
+            // consider at least three cases
+            // deleting the leaf node
+            if (node.left.data === value && node.left.left === null && node.left.right === null) {
+                node.left = null;
+            }
+            else if (node.right.data === value && node.right.left === null && node.right.right === null) {
+                node.right = null;
+            }
+            // deleting a branch node with one leaf; point the preceding child to the 2nd following child
+            // deleting a branch with both leaves; get the next right, then the next left i think
+            // value isn't there
+            else if (value < node.data) {
+                return recursiveFunction(node.left, value)
+            } else if ( value > node.data) {
+                return recursiveFunction(node.right, value)
             }
         }
         recursiveFunction(this.root, value)
