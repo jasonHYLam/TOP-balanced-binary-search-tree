@@ -41,34 +41,38 @@ export class Tree {
 
     delete(value) {
         function recursiveFunction(node, value) {
-            console.log(node)
+            console.log(value)
+            console.log(node.data)
+            // console.log('x')
             // consider at least three cases
             // deleting the leaf node
-            if (node.left.data === value && node.left.left === null && node.left.right === null) {
+            // if it exists, search for it, else return 
+            // shit i can't figure this out
+            if (node.left && node.left.data === value && node.left.left === null && node.left.right === null) {
                 node.left = null;
                 console.log('a')
             }
-            else if (node.right.data === value && node.right.left === null && node.right.right === null) {
+            else if (node.right && node.right.data === value && node.right.left === null && node.right.right === null) {
                 node.right = null;
                 console.log('b')
             }
             // deleting a branch node with one leaf; point the preceding child to the 2nd following child
-            else if (node.left.data === value && node.left.left !== null && node.left.left.left === null 
+            else if (node.left && node.left.data === value && node.left.left !== null && node.left.left.left === null 
                 && node.left.left.right === null && node.left.right === null) {
                     node.left = node.left.left
                 console.log('c')
             }
-            else if (node.left.data === value && node.left.right !== null && node.left.right.left === null 
+            else if (node.left && node.left.data === value && node.left.right !== null && node.left.right.left === null 
                 && node.left.right.right === null && node.left.left === null) {
                     node.left = node.left.right
                 console.log('d')
             }
-            else if (node.right.data === value && node.right.left !== null && node.right.left.left === null 
+            else if (node.right && node.right.data === value && node.right.left !== null && node.right.left.left === null 
                 && node.right.left.right === null && node.right.right === null) {
                     node.right = node.right.left
                 console.log('e')
             }
-            else if (node.right.data === value && node.right.right !== null && node.right.right.left === null 
+            else if (node.right && node.right.data === value && node.right.right !== null && node.right.right.left === null 
                 && node.right.right.right === null && node.right.left === null) {
                     node.right = node.right.right
                 console.log('f')
@@ -89,14 +93,28 @@ export class Tree {
                 console.log('g')
             }
             // value isn't there
-            else if (node.left === null || node.right === null) {
-                console.log('value not found');
+            // else if (value > node.data && node.right === null || value < node.data && node.left === null) {
+            //     console.log('value not found');
+            //     console.log('h')
+            //     return;
+            // }
+            else if (value > node.data && node.right === null) { // if value doesn't exist, 
+                console.log('big value not found');
+                console.log('h')
+                return;
+            }
+            else if (value < node.data && node.left === null) {
+                console.log('small value not found');
                 console.log('h')
                 return;
             }
             else if (value < node.data) {
+                console.log('asdf')
+                console.log(node.left)
                 return recursiveFunction(node.left, value)
             } else if ( value > node.data) {
+                console.log('vvvvv')
+                console.log(node.right)
                 return recursiveFunction(node.right, value)
             }
         }

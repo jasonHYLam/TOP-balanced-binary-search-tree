@@ -12,6 +12,5 @@ let newTree = new Tree(testArray)
 newTree.insert(9)
 // prettyPrint(newTree.root)
 
-// console.log('h')
-newTree.delete(677)
+newTree.delete(323)
 prettyPrint(newTree.root)
