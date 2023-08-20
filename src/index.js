@@ -21,3 +21,5 @@ newTree.find(1)
 // newTree.levelOrderIterative((node) => console.log(node))
 
 newTree.inOrder()
+
+newTree.preOrder((node)=> console.log(node.data))

@@ -162,11 +162,11 @@ export class Tree {
         }
     }
 
-    inOrder(helperFunction) {
+    preOrder(helperFunction) {
         if (helperFunction) {
             function recursiveFunction(node) {
                 helperFunction(node)
-                if (node.left === null && node.right === null) return // this only returns the first two levels
+                if (node.left === null && node.right === null) return
                 else {
                     if (node.left) {
                         recursiveFunction(node.left)
@@ -179,36 +179,71 @@ export class Tree {
             recursiveFunction(this.root)
         } else {
             function recursiveFunction(node) {
-                if (node.left === null && node.right === null) {
-                    // console.log(node.data)
-                    return [node.data];
-                }
+                let recursiveValue = [node.data];
+                if (node.left === null && node.right === null) return [node.data]
                 else {
-                    // console.log(node.data)
-                    let recursiveValue = [node.data];
-                    if (node.left) {
-                        recursiveValue = recursiveValue.concat(recursiveFunction(node.left))
-                    }
-                    if (node.right) {
-                        recursiveValue = recursiveValue.concat(recursiveFunction(node.right))
-                    }
-                    console.log(recursiveValue)
+                    if (node.left) recursiveValue = recursiveValue.concat(recursiveFunction(node.left))
+                    if (node.right) recursiveValue = recursiveValue.concat(recursiveFunction(node.right))
                     return recursiveValue;
                 }
             }
-            console.log(
-                recursiveFunction(this.root)
-            )
+            console.log(recursiveFunction(this.root))
+
+            // cleaner version; base case is not stated, as do not need to state if null
+            // function recursiveTraversal(node) {
+            // let array = [node.data]            
+            // if (node.left) array = array.concat(recursiveTraversal(node.left)) // "connecting" arrays
+            // if (node.right) array = array.concat(recursiveTraversal(node.right)) // "connecting" arrays
+            // return array
+            // }
+            // console.log(recursiveTraversal(this.root))
+            // }
         }
     }
 
     // do the same for preOrder and postOrder
+    inOrder(helperFunction) {
+        if (helperFunction) {
+            function recursiveFunction(node) {
+                if (node.left === null && node.right === null) {
+                    helperFunction(node)
+                    return
+                } 
+                else {
+                    if (node.left) {
+                        recursiveFunction(node.left)
+                    }
+                    helperFunction(node)
+                    if (node.right) {
+                        recursiveFunction(node.right)
+                    }
+                }
+            }
+            recursiveFunction(this.root)
+        } else {
+            function recursiveFunction(node) {
+                let recursiveValue = [node.data]; // somehow i need to return the left trees, before the right trees
+                if (node.left === null && node.right === null) return [node.data]
+                else {
+                    if (node.left) recursiveValue = recursiveValue.concat(recursiveFunction(node.left))
+                    if (node.right) recursiveValue = recursiveValue.concat(recursiveFunction(node.right))
+                    return recursiveValue;
+                }
+            }
+            console.log(recursiveFunction(this.root))
+        }
+
+    }
+
 
     // height; find longest length between this node, and leaf node. how? do i need to use find?
-    // height(node) {
-    //     let counter = 0;
-    //     while ()
+    // height(value) {
+    //     //first, need to find the node
+    //     // then, need to 
+    //     function recursiveTraversal(currentNode, value) {
+    //         if (currentNode = )
 
+    //     }
     // }
 }
 
