@@ -222,13 +222,11 @@ export class Tree {
             recursiveFunction(this.root)
         } else {
             function recursiveFunction(node) {
-                let recursiveValue = [node.data]; // somehow i need to return the left trees, before the right trees
-                if (node.left === null && node.right === null) return [node.data]
-                else {
+                let recursiveValue = [];
                     if (node.left) recursiveValue = recursiveValue.concat(recursiveFunction(node.left))
+                    recursiveValue = recursiveValue.concat([node.data])
                     if (node.right) recursiveValue = recursiveValue.concat(recursiveFunction(node.right))
                     return recursiveValue;
-                }
             }
             console.log(recursiveFunction(this.root))
         }
