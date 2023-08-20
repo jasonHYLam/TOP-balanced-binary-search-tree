@@ -205,10 +205,7 @@ export class Tree {
     inOrder(helperFunction) {
         if (helperFunction) {
             function recursiveFunction(node) {
-                if (node.left === null && node.right === null) {
-                    helperFunction(node)
-                    return
-                } 
+                if (node.left === null && node.right === null) helperFunction(node)
                 else {
                     if (node.left) {
                         recursiveFunction(node.left)
@@ -230,7 +227,35 @@ export class Tree {
             }
             console.log(recursiveFunction(this.root))
         }
+    }
 
+
+
+    postOrder(helperFunction) {
+        if (helperFunction) {
+            function recursiveFunction(node) {
+                if (node.left === null && node.right === null) helperFunction(node)
+                else {
+                    if (node.left) {
+                        recursiveFunction(node.left)
+                    }
+                    if (node.right) {
+                        recursiveFunction(node.right)
+                    }
+                    helperFunction(node)
+                }
+            }
+            recursiveFunction(this.root)
+        } else {
+            function recursiveFunction(node) {
+                let recursiveValue = [];
+                    if (node.left) recursiveValue = recursiveValue.concat(recursiveFunction(node.left))
+                    if (node.right) recursiveValue = recursiveValue.concat(recursiveFunction(node.right))
+                    recursiveValue = recursiveValue.concat([node.data])
+                    return recursiveValue;
+            }
+            console.log(recursiveFunction(this.root))
+        }
     }
 
 

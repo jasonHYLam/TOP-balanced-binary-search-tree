@@ -24,4 +24,4 @@ newTree.preOrder()
 
 newTree.preOrder((node)=> console.log(node.data))
 
-newTree.inOrder()
+newTree.inOrder((node)=>console.log(node.data))
