@@ -18,6 +18,10 @@ My approach mainly required recursion rather than iteration.
 
 - find() accepts a value and returns the node with the given value. 
 
+- levelOrder() traverses the tree in level order, using iteration.
+
+- inOrderIteratively() traverses the tree by depth first. This uses iteration rather than recursion.
+
 ## What I've Learned
 
 - In most of these functions, it was required to check the parent of the node, rather than the node itself. This is due to the nature of the tree structure, and how Nodes can only be set to null by setting on Node.left and Node.right. Usually, I checked if the parent Node's children's children were null, eg. Node.left.left === null or Node.right.left === null.
@@ -26,4 +30,4 @@ My approach mainly required recursion rather than iteration.
 
 - Guard clauses are required for checking whether a value exists for deletion functions. The guard conditions prevent errors when the node children (in this case, node.left or node.right) aren't found.
 
-
+- Array.concat() does not modify an existing array. To modify an existing array with .concat(), it must be reassigned, like so: array = array.concat(array2)

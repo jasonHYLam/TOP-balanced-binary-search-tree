@@ -20,4 +20,4 @@ newTree.find(1)
 
 // newTree.levelOrderIterative((node) => console.log(node))
 
-newTree.inOrder((node)=>console.log(node))
+newTree.inOrder()

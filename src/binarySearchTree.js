@@ -163,22 +163,53 @@ export class Tree {
     }
 
     inOrder(helperFunction) {
-        function recursiveFunction(node) {
-            helperFunction(node)
-            if (node.left === null && node.right === null) return // this only returns the first two levels
-            else {
-                if (node.left) {
-                    recursiveFunction(node.left)
-                }
-                if (node.right) {
-                    recursiveFunction(node.right)
+        if (helperFunction) {
+            function recursiveFunction(node) {
+                helperFunction(node)
+                if (node.left === null && node.right === null) return // this only returns the first two levels
+                else {
+                    if (node.left) {
+                        recursiveFunction(node.left)
+                    }
+                    if (node.right) {
+                        recursiveFunction(node.right)
+                    }
                 }
             }
+            recursiveFunction(this.root)
+        } else {
+            function recursiveFunction(node) {
+                if (node.left === null && node.right === null) {
+                    // console.log(node.data)
+                    return [node.data];
+                }
+                else {
+                    // console.log(node.data)
+                    let recursiveValue = [node.data];
+                    if (node.left) {
+                        recursiveValue = recursiveValue.concat(recursiveFunction(node.left))
+                    }
+                    if (node.right) {
+                        recursiveValue = recursiveValue.concat(recursiveFunction(node.right))
+                    }
+                    console.log(recursiveValue)
+                    return recursiveValue;
+                }
+            }
+            console.log(
+                recursiveFunction(this.root)
+            )
         }
-        recursiveFunction(this.root)
     }
 
     // do the same for preOrder and postOrder
+
+    // height; find longest length between this node, and leaf node. how? do i need to use find?
+    // height(node) {
+    //     let counter = 0;
+    //     while ()
+
+    // }
 }
 
 
